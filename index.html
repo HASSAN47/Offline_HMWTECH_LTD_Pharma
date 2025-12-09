@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="description" content="Offline-first Pharmacy Management System by HMWTECH.LTD" />
+    
+    <!-- PWA Settings -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="application-name" content="HMWTECH.LTD Pharma">
+    <meta name="apple-mobile-web-app-title" content="HMWTECH.LTD Pharma">
+
+    <title>HMWTECH.LTD Pharma</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior-y: none; /* Prevents pull-to-refresh on mobile */
+      }
+      /* Custom Scrollbar for a cleaner look */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8; 
+      }
+
+      /* Real POS Receipt Printing Styles */
+      @media print {
+        @page {
+          margin: 0;
+          size: auto;
+        }
+        body * {
+          visibility: hidden;
+        }
+        #printable-receipt, #printable-receipt * {
+          visibility: visible;
+        }
+        #printable-receipt {
+          display: block !important; /* Critical: Override 'hidden' class */
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 80mm; /* Standard thermal printer width */
+          max-width: 80mm;
+          background: white;
+          color: black;
+          padding: 10px;
+          margin: 0;
+          font-family: 'Courier New', Courier, monospace; /* Monospace for alignment */
+          font-size: 12px;
+          line-height: 1.2;
+        }
+        #printable-receipt h1 {
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+        #printable-receipt .separator {
+          border-bottom: 1px dashed black;
+          margin: 10px 0;
+        }
+        /* Hide UI elements during print */
+        .no-print {
+          display: none !important;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "react-qr-code": "https://esm.sh/react-qr-code@2.0.15?external=react,react-dom",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "lz-string": "https://esm.sh/lz-string@1.5.0",
+    "html5-qrcode": "https://esm.sh/html5-qrcode@2.3.8"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50 text-slate-900 antialiased overflow-hidden selection:bg-blue-100">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
